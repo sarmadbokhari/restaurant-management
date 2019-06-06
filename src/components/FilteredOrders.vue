@@ -4,8 +4,9 @@
     <div class="flex justify-between mb-5">
       <h1 class="font-bold text-xl mb-2">Orders</h1>
       <Dropdown
-        :options="$store.state.filters"
-        @optionSelected="optionSelected"
+        :open="openDropDown"
+        @close="openDropDown = false"
+        @open="openDropDown = true"
       >
         <template v-slot:title>
           <p v-if="currentFilter">
@@ -14,7 +15,19 @@
           <p v-else>All orders</p>
           <i class="fas fa-angle-down text-sm pl-3 px-2"></i>
         </template>
-        <slot>hello world</slot>
+        <ul>
+          <li
+            v-for="(option, index) in $store.state.filters"
+            :key="index"
+            @click="optionSelected(option.value)"
+          >
+            <a
+              href="#"
+              class="text-lg block px-4 py-2 hover:bg-indigo-500 hover:text-white"
+              >Move to {{ option.text }}</a
+            >
+          </li>
+        </ul>
       </Dropdown>
     </div>
 
@@ -81,6 +94,7 @@ export default {
   },
   data() {
     return {
+      openDropDown: false,
       currentFilter: this.filter || "CREATED",
       openModal: false,
       selectedOrder: null,
@@ -105,6 +119,7 @@ export default {
   },
   methods: {
     optionSelected(value) {
+      this.openDropDown = false;
       this.currentFilter = value;
     }
   },

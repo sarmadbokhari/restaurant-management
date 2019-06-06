@@ -8,9 +8,9 @@
         <span class="text-gray-500">(ID: {{ order.id }})</span></span
       >
       <Dropdown
-        :options="$store.state.filters"
-        @optionSelected="optionSelected"
-        preOptionText="Move to"
+        :open="openDropDown"
+        @close="openDropDown = false"
+        @open="openDropDown = true"
       >
         <template v-slot:title>
           <span
@@ -38,6 +38,19 @@
             <i class="fas fa-angle-down text-sm pl-3 px-2"></i>
           </span>
         </template>
+        <ul>
+          <li
+            v-for="(option, index) in $store.state.filters"
+            :key="index"
+            @click="optionSelected(option.value)"
+          >
+            <a
+              href="#"
+              class="text-lg block px-4 py-2 hover:bg-indigo-500 hover:text-white"
+              >Move to {{ option.text }}</a
+            >
+          </li>
+        </ul>
       </Dropdown>
     </h2>
 
@@ -60,6 +73,7 @@ export default {
     }
   },
   data: () => ({
+    openDropDown: false,
     statusMap: {
       CREATED: "Cooking Now",
       COOKED: "Cooked",
@@ -70,6 +84,8 @@ export default {
   }),
   methods: {
     optionSelected(selection) {
+      this.openDropDown = false;
+
       this.$store.commit("UPDATE_ORDER_STATUS", {
         orderId: this.order.id,
         newStatus: selection

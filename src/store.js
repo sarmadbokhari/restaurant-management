@@ -31,7 +31,6 @@ export default new Vuex.Store({
     },
 
     SOCKET_disconnect(state) {
-      console.log("SOCKET_disconnect");
       state.isConnected = false;
     },
 
@@ -86,8 +85,6 @@ export default new Vuex.Store({
           Vue.set(state.topSellers, word, newCount);
         }
       });
-
-      // console.log(state.topSellers);
     },
 
     HIDE_NOTIFICATION(state, id) {
@@ -101,7 +98,6 @@ export default new Vuex.Store({
       const existingEvent = _.find(state.notifications, { id: orderId });
 
       Vue.set(existingEvent, "currentStatus", newStatus);
-      console.log(existingEvent);
     }
   },
   getters: {
