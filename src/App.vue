@@ -1,29 +1,62 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <div
+    id="app"
+    class="antialiased text-gray-900 flex flex-col min-h-screen bg-gray-200"
+  >
     <router-view />
+
+    <portal-target name="modals"></portal-target>
+
+    <Notifications></Notifications>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import Notifications from "./components/Notifications/Notifications.vue";
+
+export default {
+  components: {
+    Notifications
   }
+};
+</script>
+
+<style>
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.origin-top-right {
+  transform-origin: top right;
+}
+.transition-all {
+  transition-property: all;
+}
+.transition-fastest {
+  transition-duration: 50ms;
+}
+.transition-faster {
+  transition-duration: 100ms;
+}
+.transition-fast {
+  transition-duration: 150ms;
+}
+.transition-medium {
+  transition-duration: 200ms;
+}
+.transition-slow {
+  transition-duration: 300ms;
+}
+.ease-out-quad {
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.ease-in-quad {
+  transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+.scale-70 {
+  transform: scale(0.7);
+}
+.scale-100 {
+  transform: scale(1);
 }
 </style>
