@@ -9,25 +9,50 @@
         @open="openDropDown = true"
       >
         <template v-slot:title>
-          <p v-if="currentFilter">
+          <button
+            v-if="sentWithin"
+            @click="sentWithin = null"
+            class="bg-red-500 hover:bg-red-600 text-xs text-white font-bold py-1 px-2 mr-8 rounded-full"
+          >
+            <span>sent within {{ sentWithin }} seconds</span>
+            <i class="fas fa-times ml-3"></i>
+          </button>
+          <p class="text-gray-600 text-sm mr-8">
+            count: {{ filteredOrders.length }}
+          </p>
+          <p>
             {{ statusMap[currentFilter] }}
           </p>
-          <p v-else>All orders</p>
           <i class="fas fa-angle-down text-sm pl-3 px-2"></i>
         </template>
-        <ul>
-          <li
-            v-for="(option, index) in $store.state.filters"
-            :key="index"
-            @click="optionSelected(option.value)"
-          >
-            <a
-              href="#"
-              class="text-lg block px-4 py-2 hover:bg-indigo-500 hover:text-white"
-              >Move to {{ option.text }}</a
+        <div>
+          <div class="px-4 py-2">
+            <span class="text-gray-700">Sent within (seconds)</span>
+            <div>
+              <input
+                class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                id="inline-full-name"
+                type="number"
+                v-model.number="sentWithin"
+                placeholder="seconds"
+                @keyup.enter="openDropDown = false"
+              />
+            </div>
+          </div>
+          <ul>
+            <li
+              v-for="(option, index) in $store.state.filters"
+              :key="index"
+              @click="optionSelected(option.value)"
             >
-          </li>
-        </ul>
+              <a
+                href="#"
+                class="text-lg block px-4 py-2 hover:bg-indigo-500 hover:text-white"
+                >Filter by {{ option.text }}</a
+              >
+            </li>
+          </ul>
+        </div>
       </Dropdown>
     </div>
 
@@ -51,7 +76,9 @@
         <div class="flex-1 bg-gray-400 h-12">{{ order.name }}</div>
         <div class="flex-1 bg-gray-400 h-12">{{ order.currentStatus }}</div>
         <div class="flex-1 bg-gray-400 h-12">{{ order.destination }}</div>
-        <div class="flex-1 bg-gray-400 h-12">{{ order.sent_at_second }}</div>
+        <div class="flex-1 bg-gray-400 h-12">
+          {{ order.sent_at_second }} seconds
+        </div>
       </div>
     </template>
 
@@ -84,6 +111,7 @@ import Dropdown from "./Dropdown.vue";
 import EmptyState from "../icons/EmptyState.vue";
 import Modal from "./Modal.vue";
 import OrderDetail from "./OrderDetail.vue";
+import _ from "lodash";
 
 export default {
   components: {
@@ -94,6 +122,7 @@ export default {
   },
   data() {
     return {
+      sentWithin: null,
       openDropDown: false,
       currentFilter: this.filter || "CREATED",
       openModal: false,
@@ -114,7 +143,30 @@ export default {
           event => event.currentStatus
         );
       }
-      return this.$store.getters.getOrdersByFilter(this.currentFilter);
+
+      // pass through two filters:
+      // 1. status event_name filter
+      // 2. sent_at_second filter
+
+      let orders = this.$store.getters.getOrdersByFilter(this.currentFilter);
+
+      if (this.sentWithin) {
+        let event_name = this.currentFilter;
+        let sentWithin = this.sentWithin;
+
+        orders = orders.filter(order => {
+          if (!order.events[event_name]) {
+            return true;
+          }
+
+          // PERFORMANCE WIN: because events is an Object and not an Array, we get O(1) access to to the exact event
+          const eventSentAt = order.events[event_name].sent_at_second;
+
+          return eventSentAt <= sentWithin;
+        });
+      }
+
+      return orders;
     }
   },
   methods: {
