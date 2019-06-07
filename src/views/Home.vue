@@ -233,9 +233,7 @@ export default {
     getAverageDeliveryTime() {
       const totalTime = this.$store.getters.deliveredOrders.reduce(
         (acc, order) => {
-          const deliverEvent = _.find(order.events, {
-            event_name: "DELIVERED"
-          });
+          const deliverEvent = order.events.DELIVERED;
 
           return (acc += deliverEvent.sent_at_second - order.sent_at_second);
         },
@@ -248,7 +246,7 @@ export default {
     },
 
     getOrderTimeToDelivery(order) {
-      const deliveredEvent = _.find(order.events, { event_name: "DELIVERED" });
+      const deliveredEvent = order.events.DELIVERED;
 
       return (
         Math.round(
