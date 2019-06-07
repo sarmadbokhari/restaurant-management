@@ -57,7 +57,7 @@
     </div>
 
     <!-- ORDERS -->
-    <template v-if="filteredOrders.length">
+    <div v-if="filteredOrders.length" class="orders-container overflow-auto">
       <div class="flex">
         <div class="flex-1 bg-gray-400 h-12">Order name</div>
         <div class="flex-1 bg-gray-400 h-12">Order status</div>
@@ -80,7 +80,7 @@
           {{ order.sent_at_second }} seconds
         </div>
       </div>
-    </template>
+    </div>
 
     <div class="flex items-center justify-center" v-else>
       <EmptyState text="No orders for this filter" class="w-1/2" />
@@ -188,4 +188,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.orders-container {
+  height: 300px;
+}
+</style>
