@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center">
+  <div class="flex items-center justify-center z-10">
     <div class="relative">
       <div v-if="open" @click="$emit('close')" class="fixed inset-0"></div>
       <button

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="notifications-container transition-all transition-medium"
+    class="notifications-container transition-all transition-medium z-50"
     v-click-outside="closeNotifications"
     :class="{ hide: !showNotifications }"
   >
