@@ -2,7 +2,7 @@
   <portal to="modals">
     <div
       v-if="showModal"
-      class="fixed inset-0 flex items-center justify-center"
+      class="fixed inset-0 flex items-center justify-center z-50"
     >
       <transition
         @before-leave="backdropLeaving = true"
