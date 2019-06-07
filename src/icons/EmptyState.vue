@@ -4,6 +4,7 @@
     <Empty2 ref="empty2" v-if="randomIndex === 2"></Empty2>
     <Empty3 ref="empty3" v-if="randomIndex === 3"></Empty3>
     <Empty4 ref="empty4" v-if="randomIndex === 4"></Empty4>
+    <p class="text-center text-gray-700 py-3">{{ text }}</p>
   </div>
 </template>
 
@@ -22,7 +23,13 @@ export default {
   },
   data: () => ({
     randomIndex: Math.ceil(Math.random() * 4)
-  })
+  }),
+  props: {
+    text: {
+      type: String,
+      required: true
+    }
+  }
 };
 </script>
 

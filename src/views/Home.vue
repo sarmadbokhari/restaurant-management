@@ -71,7 +71,7 @@
               class="flex items-center justify-center"
               v-if="!Object.values($store.getters.topSellers).length"
             >
-              <EmptyState class="mt-5 w-4/5 h-full" />
+              <EmptyState text="No top sellers yet" class="mt-5 w-4/5 h-full" />
             </div>
             <!-- BEST SELLERS STATE -->
             <template v-else>
@@ -98,7 +98,10 @@
               class="flex items-center justify-center"
               v-if="!$store.getters.deliveredOrders.length"
             >
-              <EmptyState class="mt-5 w-4/5 h-full" />
+              <EmptyState
+                text="No delivered orders yet"
+                class="mt-5 w-4/5 h-full"
+              />
             </div>
             <template v-else>
               <div class="flex flex-col justify-around text-center">
@@ -180,7 +183,7 @@
           <div class="w-1/3 p-5 rounded m-3 mr-0 bg-gray-400">
             <p class="font-bold text-xl mb-2">Average order value</p>
             <div class="flex items-center justify-center">
-              <EmptyState class="mt-5 w-4/5 h-full" />
+              <EmptyState text="No $$$ data yet" class="mt-5 w-4/5 h-full" />
             </div>
           </div>
         </div>

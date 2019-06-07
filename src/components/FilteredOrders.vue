@@ -56,7 +56,7 @@
     </template>
 
     <div class="flex items-center justify-center" v-else>
-      <EmptyState class="w-1/2" />
+      <EmptyState text="No orders for this filter" class="w-1/2" />
     </div>
 
     <Modal v-if="openModal" :open="openModal" @close="openModal = false">
