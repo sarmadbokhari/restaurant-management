@@ -55,16 +55,20 @@
     </h2>
 
     <OrderStepper :order="order" class="mt-3" />
+
+    <OrderMap :order="order" class="mt-3 h-64" />
   </div>
 </template>
 
 <script>
 import Dropdown from "./Dropdown.vue";
-import OrderStepper from "../components/OrderStepper.vue";
+import OrderMap from "./OrderMap.vue";
+import OrderStepper from "./OrderStepper.vue";
 
 export default {
   components: {
     Dropdown,
+    OrderMap,
     OrderStepper
   },
   props: {
