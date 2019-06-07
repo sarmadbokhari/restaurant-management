@@ -1,6 +1,10 @@
 <template>
-  <div class="order-map relative">
-    <div id="map"></div>
+  <div class="order-map relative flex items-center">
+    <div v-if="!accessToken" class="text-2xl text-red-500">
+      MapBox access token is missing. Please add your MapBox access token to the
+      .env file in the root directory and restart the simulation.
+    </div>
+    <div v-else id="map"></div>
   </div>
 </template>
 
@@ -23,12 +27,26 @@ export default {
     popup: null,
     map: null
   }),
+  computed: {
+    accessToken() {
+      if (
+        !process.env.VUE_APP_MAPBOX_ACCESS_TOKEN ||
+        process.env.VUE_APP_MAPBOX_ACCESS_TOKEN === "YOUR_ACCESS_TOKEN"
+      ) {
+        return null;
+      }
+
+      return process.env.VUE_APP_MAPBOX_ACCESS_TOKEN;
+    }
+  },
   mounted() {
-    this.displayMap();
+    if (this.accessToken) {
+      this.displayMap();
+    }
   },
   methods: {
     async getCoordinates() {
-      mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_ACCESS_TOKEN;
+      mapboxgl.accessToken = this.accessToken;
 
       // get coordinates from address
       var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
@@ -85,6 +103,9 @@ export default {
     order: {
       deep: true,
       handler: async function(newVal) {
+        if (!this.accessToken) {
+          return;
+        }
         // when status of order changes remove old popup and update with new order status
         this.popup.remove();
 
