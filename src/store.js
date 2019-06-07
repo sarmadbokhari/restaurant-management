@@ -20,7 +20,7 @@ export default new Vuex.Store({
   },
   mutations: {
     SOCKET_connect(state) {
-      state.isConnected = true;
+      state.isConnected = Date.now();
 
       state.notifications.push({
         message: "Connected",
@@ -62,6 +62,11 @@ export default new Vuex.Store({
           currentStatus: "CREATED"
         });
 
+        if (eventsCopy[0].events) {
+          // add the CREATED event into events object as well
+          eventsCopy[0].events["CREATED"] = newEvent;
+        }
+
         Vue.set(state, "notifications", eventsCopy);
       }
 
@@ -93,6 +98,11 @@ export default new Vuex.Store({
       const existingEvent = _.find(state.notifications, { id: orderId });
 
       Vue.set(existingEvent, "currentStatus", newStatus);
+      // add event to order events with sent_at_second calculation
+      Vue.set(existingEvent.events, newStatus, {
+        event_name: "DELIVERED",
+        sent_at_second: (state.isConnected - Date.now()) / 1000
+      });
     }
   },
   getters: {
