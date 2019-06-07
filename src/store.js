@@ -54,17 +54,12 @@ export default new Vuex.Store({
         Vue.set(existingEvent.events, event_name, newEvent);
 
         Vue.set(state, "notifications", eventsCopy);
-
-        if (event_name === "DELIVERED") {
-          Vue.set(existingEvent, "deliveredAt", Date.now());
-        }
       } else {
         // NEW EVENT
         eventsCopy.push({
           ...newEvent,
           events: {}, // for maximum customer order edit-ability, we'll store all future events in an events property
-          currentStatus: "CREATED",
-          createdAt: Date.now()
+          currentStatus: "CREATED"
         });
 
         Vue.set(state, "notifications", eventsCopy);

@@ -159,11 +159,7 @@
                       {{ order.currentStatus }}
                     </div>
                     <div class="flex-1 h-12">
-                      {{
-                        Math.round(
-                          ((order.deliveredAt - order.createdAt) / 1000) * 100
-                        ) / 100
-                      }}
+                      {{ getOrderTimeToDelivery(order) }}
                       seconds
                     </div>
                   </div>
@@ -194,8 +190,9 @@
 
 <script>
 import EmptyState from "../icons/EmptyState.vue";
-import FilteredOrders from "../components/FilteredOrders";
+import FilteredOrders from "../components/FilteredOrders.vue";
 import Modal from "../components/Modal.vue";
+import _ from "lodash";
 
 export default {
   components: {
@@ -222,22 +219,42 @@ export default {
 
     getDeliveredOrders() {
       return this.$store.getters.deliveredOrders.sort((a, b) => {
-        return b.deliveredAt - b.createdAt - (a.deliveredAt - a.createdAt);
+        const bDeliverEvent = _.find(b.events, { event_name: "DELIVERED" });
+        const aDeliverEvent = _.find(a.events, { event_name: "DELIVERED" });
+
+        return (
+          bDeliverEvent.sent_at_second -
+          b.sent_at_second -
+          (aDeliverEvent.sent_at_second - a.sent_at_second)
+        );
       });
     },
 
     getAverageDeliveryTime() {
       const totalTime = this.$store.getters.deliveredOrders.reduce(
         (acc, order) => {
-          return (acc += order.deliveredAt - order.createdAt);
+          const deliverEvent = _.find(order.events, {
+            event_name: "DELIVERED"
+          });
+
+          return (acc += deliverEvent.sent_at_second - order.sent_at_second);
         },
         0
       );
 
-      const average =
-        totalTime / this.$store.getters.deliveredOrders.length / 1000;
+      const average = totalTime / this.$store.getters.deliveredOrders.length;
 
       return Math.round(average * 100) / 100;
+    },
+
+    getOrderTimeToDelivery(order) {
+      const deliveredEvent = _.find(order.events, { event_name: "DELIVERED" });
+
+      return (
+        Math.round(
+          (deliveredEvent.sent_at_second - order.sent_at_second) * 100
+        ) / 100
+      );
     }
   }
 };
