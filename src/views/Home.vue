@@ -5,7 +5,8 @@
         <h1 class="mb-4">Restaurant Overview</h1>
         <div class="flex">
           <div
-            class="flex-1 p-5 rounded m-3 ml-0 bg-gray-400 hover:bg-blue-200 cursor-pointer"
+            class="flex-1 p-5 rounded m-3 ml-0 bg-gray-400 hover:bg-yellow-300 cursor-pointer"
+            :class="{ 'bg-yellow-400': filter === 'CREATED' }"
             @click="filter = 'CREATED'"
           >
             <p class="font-bold text-xl mb-2">New orders</p>
@@ -14,7 +15,8 @@
             </p>
           </div>
           <div
-            class="flex-1 p-5 rounded m-3 bg-gray-400 hover:bg-blue-200 cursor-pointer"
+            class="flex-1 p-5 rounded m-3 bg-gray-400 hover:bg-yellow-300 cursor-pointer"
+            :class="{ 'bg-yellow-400': filter === 'COOKED' }"
             @click="filter = 'COOKED'"
           >
             <p class="font-bold text-xl mb-2">Cooked</p>
@@ -23,7 +25,8 @@
             </p>
           </div>
           <div
-            class="flex-1 p-5 rounded m-3 bg-gray-400 hover:bg-blue-200 cursor-pointer"
+            class="flex-1 p-5 rounded m-3 bg-gray-400 hover:bg-yellow-300 cursor-pointer"
+            :class="{ 'bg-yellow-400': filter === 'DRIVER_RECEIVED' }"
             @click="filter = 'DRIVER_RECEIVED'"
           >
             <p class="font-bold text-xl mb-2">Drivers en route</p>
@@ -32,7 +35,8 @@
             </p>
           </div>
           <div
-            class="flex-1 p-5 rounded m-3 bg-gray-400 hover:bg-blue-200 cursor-pointer"
+            class="flex-1 p-5 rounded m-3 bg-gray-400 hover:bg-yellow-300 cursor-pointer"
+            :class="{ 'bg-yellow-400': filter === 'DELIVERED' }"
             @click="filter = 'DELIVERED'"
           >
             <p class="font-bold text-xl mb-2">Delivered</p>
@@ -41,7 +45,8 @@
             </p>
           </div>
           <div
-            class="flex-1 p-5 rounded m-3 mr-0 bg-gray-400 hover:bg-blue-200 cursor-pointer"
+            class="flex-1 p-5 rounded m-3 mr-0 bg-gray-400 hover:bg-yellow-300 cursor-pointer"
+            :class="{ 'bg-yellow-400': filter === 'CANCELLED' }"
             @click="filter = 'CANCELLED'"
           >
             <p class="font-bold text-xl mb-2">Cancelled</p>
