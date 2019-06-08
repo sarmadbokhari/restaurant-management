@@ -17,7 +17,7 @@ io.on("connection", function(socket) {
     const currentEvents = events.filter(
       event => event.sent_at_second === currentIndex
     );
-    currentEvents.forEach(event => io.emit("event", JSON.stringify(event)));
+    currentEvents.forEach(event => io.emit("new_event", JSON.stringify(event)));
 
     currentIndex++;
   }, 1000);

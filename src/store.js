@@ -34,7 +34,7 @@ export default new Vuex.Store({
       state.isConnected = false;
     },
 
-    SOCKET_event(state, message) {
+    SOCKET_new_event(state, message) {
       const newEvent = JSON.parse(message);
       const eventsCopy = state.notifications.slice();
       let existingEvent = _.find(eventsCopy, { id: newEvent.id });
