@@ -48,7 +48,7 @@
               {{ notification.name }}
             </h4>
             <p class="text-base text-gray-600 leading-normal">
-              {{ status[notification.event_name] }}
+              {{ status[notification.currentStatus] }}
             </p>
           </div>
           <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
