@@ -1,5 +1,12 @@
 <template>
-  <div class="flex flex-1 items-center justify-center">
+  <div class="flex flex-1 items-center justify-center relative">
+    <div
+      class="absolute top-0 left-0 my-8 mx-8 cursor-pointer"
+      @click="$router.push('/')"
+    >
+      <i class="fas fa-home"></i> Dashboard
+    </div>
+
     <!-- ERROR STATE -->
     <div
       class="bg-white rounded-lg shadow-md px-6 py-6 sm:w-full md:w-1/2"
