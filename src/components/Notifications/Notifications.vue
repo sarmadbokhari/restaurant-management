@@ -94,6 +94,7 @@ export default {
   top: 0;
   right: 0;
   width: 350px;
+  background: rgba(0, 0, 0, 0.15);
 
   &.hide {
     transform: translateX(100%);
