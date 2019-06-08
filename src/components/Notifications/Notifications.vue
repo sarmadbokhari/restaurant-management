@@ -9,13 +9,39 @@
         @click="showNotifications = true"
         class="ml-2 cursor-pointer visible"
         :class="{ invisible: showNotifications }"
-        ><i class="fas fa-outdent"></i
+        ><i class="fas fa-chevron-left"></i
       ></span>
+      <span class="text-gray-700 ml-6">
+        <span
+          @click="$store.commit('TOGGLE_SHOW_ALL_EVENTS')"
+          class="cursor-pointer"
+          ><i
+            class="far"
+            :class="{
+              'fa-square': $store.state.showAllEvents,
+              'fa-check-square': !$store.state.showAllEvents
+            }"
+          ></i>
+          All orders</span
+        >
+        <span
+          @click="$store.commit('TOGGLE_SHOW_ALL_EVENTS')"
+          class="ml-3 cursor-pointer"
+          ><i
+            class="far"
+            :class="{
+              'fa-square': !$store.state.showAllEvents,
+              'fa-check-square': $store.state.showAllEvents
+            }"
+          ></i>
+          New orders only</span
+        >
+      </span>
       <span
         @click="showNotifications = false"
         class="mr-3 cursor-pointer visible"
         :class="{ invisible: !showNotifications }"
-        ><i class="fas fa-indent"></i
+        ><i class="fas fa-chevron-right"></i
       ></span>
     </div>
     <div class="notifications overflow-auto">
@@ -38,6 +64,12 @@ export default {
   }),
   computed: {
     notifications() {
+      if (this.$store.state.showAllEvents) {
+        return this.$store.getters.notifications.filter(
+          order => order.currentStatus === "CREATED"
+        );
+      }
+
       return this.$store.getters.notifications;
     }
   },

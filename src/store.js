@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     isConnected: false,
     notifications: [],
+    showAllEvents: true,
     filters: [
       { text: "Cooking Now", value: "CREATED" },
       { text: "Cooked", value: "COOKED" },
@@ -103,6 +104,10 @@ export default new Vuex.Store({
         event_name: "DELIVERED",
         sent_at_second: (state.isConnected - Date.now()) / 1000
       });
+    },
+
+    TOGGLE_SHOW_ALL_EVENTS(state) {
+      state.showAllEvents = !state.showAllEvents;
     }
   },
   getters: {
