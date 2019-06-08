@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isConnected: false,
-    notifications: [],
+    orders: [],
     showAllEvents: true,
     filters: [
       { text: "Cooking Now", value: "CREATED" },
@@ -23,7 +23,7 @@ export default new Vuex.Store({
     SOCKET_connect(state) {
       state.isConnected = Date.now();
 
-      state.notifications.push({
+      state.orders.push({
         message: "Connected",
         subtext: "Simulation started",
         id: Date.now(),
@@ -37,7 +37,7 @@ export default new Vuex.Store({
 
     SOCKET_new_event(state, message) {
       const newEvent = JSON.parse(message);
-      const eventsCopy = state.notifications.slice();
+      const eventsCopy = state.orders.slice();
       let existingEvent = _.find(eventsCopy, { id: newEvent.id });
 
       // CREATE NEW EVENT
@@ -54,7 +54,7 @@ export default new Vuex.Store({
         Vue.set(existingEvent, "currentStatus", event_name);
         Vue.set(existingEvent.events, event_name, newEvent);
 
-        Vue.set(state, "notifications", eventsCopy);
+        Vue.set(state, "orders", eventsCopy);
       } else {
         // NEW EVENT
         eventsCopy.push({
@@ -68,7 +68,7 @@ export default new Vuex.Store({
           eventsCopy[0].events["CREATED"] = newEvent;
         }
 
-        Vue.set(state, "notifications", eventsCopy);
+        Vue.set(state, "orders", eventsCopy);
       }
 
       // collect meta data
@@ -89,14 +89,14 @@ export default new Vuex.Store({
     },
 
     HIDE_NOTIFICATION(state, id) {
-      const notifications = _.filter(state.notifications, { id });
+      const notifications = _.filter(state.orders, { id });
       notifications.forEach(notification => {
         notification.showNotification = false;
       });
     },
 
     UPDATE_ORDER_STATUS(state, { orderId, newStatus }) {
-      const existingEvent = _.find(state.notifications, { id: orderId });
+      const existingEvent = _.find(state.orders, { id: orderId });
 
       Vue.set(existingEvent, "currentStatus", newStatus);
       // add event to order events with sent_at_second calculation
@@ -111,15 +111,13 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    notifications: ({ notifications }) => notifications,
+    orders: ({ orders }) => orders,
     getOrdersByFilter: state => filter => {
-      return state.notifications.filter(
-        order => order.currentStatus === filter
-      );
+      return state.orders.filter(order => order.currentStatus === filter);
     },
     topSellers: ({ topSellers }) => topSellers,
-    deliveredOrders: ({ notifications }) => {
-      return notifications.filter(order => order.currentStatus === "DELIVERED");
+    deliveredOrders: ({ orders }) => {
+      return orders.filter(order => order.currentStatus === "DELIVERED");
     }
   }
 });

@@ -151,9 +151,7 @@ export default {
   computed: {
     filteredOrders() {
       if (!this.currentFilter) {
-        return this.$store.getters.notifications.filter(
-          event => event.currentStatus
-        );
+        return this.$store.getters.orders.filter(event => event.currentStatus);
       }
 
       // pass through two filters:

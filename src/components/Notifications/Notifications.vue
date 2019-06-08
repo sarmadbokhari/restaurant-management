@@ -65,12 +65,12 @@ export default {
   computed: {
     notifications() {
       if (this.$store.state.showAllEvents) {
-        return this.$store.getters.notifications.filter(
+        return this.$store.getters.orders.filter(
           order => order.currentStatus === "CREATED"
         );
       }
 
-      return this.$store.getters.notifications;
+      return this.$store.getters.orders;
     }
   },
   created() {

@@ -42,7 +42,7 @@ export default {
     order() {
       const id = this.$route.params.id || this.orderId;
 
-      return _.find(this.$store.getters.notifications, { id });
+      return _.find(this.$store.getters.orders, { id });
     }
   },
   props: {
