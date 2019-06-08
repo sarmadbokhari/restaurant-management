@@ -12,7 +12,7 @@ export default new Vuex.Store({
     filters: [
       { text: "Cooking Now", value: "CREATED" },
       { text: "Cooked", value: "COOKED" },
-      { text: "Drivers en route", value: "DRIVER_RECEIVED" },
+      { text: "Driver en route", value: "DRIVER_RECEIVED" },
       { text: "Delivered", value: "DELIVERED" },
       { text: "Cancelled", value: "CANCELLED" }
     ],

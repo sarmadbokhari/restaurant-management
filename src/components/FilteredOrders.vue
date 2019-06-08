@@ -142,7 +142,7 @@ export default {
       statusMap: {
         CREATED: "Cooking Now",
         COOKED: "Cooked Orders",
-        DRIVER_RECEIVED: "Drivers En Route",
+        DRIVER_RECEIVED: "Driver En Route",
         DELIVERED: "Delivered Orders",
         CANCELLED: "Cancelled Orders"
       }

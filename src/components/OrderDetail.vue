@@ -40,7 +40,7 @@
         </template>
         <ul>
           <li
-            v-for="(option, index) in $store.state.filters"
+            v-for="(option, index) in filterOptions"
             :key="index"
             @click="optionSelected(option.value)"
           >
@@ -86,6 +86,13 @@ export default {
       CANCELLED: "Cancelled"
     }
   }),
+  computed: {
+    filterOptions() {
+      return this.$store.state.filters.filter(
+        filter => filter.value !== this.order.currentStatus
+      );
+    }
+  },
   methods: {
     optionSelected(selection) {
       this.openDropDown = false;
