@@ -1,6 +1,11 @@
 # Restaurant Order Management Web App
-Built with VueJS, socket-io, and tailwindcss
+Built with VueJS, Vuex, socket-io, and tailwindcss
 
+## Technology reasoning
+- VueJS for reusable component design paradigm
+- Vuex for a global state container (following flux architecture)
+- socket-io to communicate real-time orders (vue-socket.io for it's tight integration with vuex)
+- tailwindcss to build a custom design system that isn't the same as every other website on the internet (i.e. Bootstrap)
 
 
 # Steps to run project
@@ -106,17 +111,7 @@ Take manual action on an order
 
 
 # Tests
-### Run your tests
-```
-npm run test
-```
-
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
-### Run your unit tests
+### Run unit tests
 ```
 npm run test:unit
 ```
