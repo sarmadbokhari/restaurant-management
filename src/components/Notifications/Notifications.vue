@@ -74,9 +74,9 @@ export default {
     }
   },
   created() {
-    setTimeout(() => {
-      this.showNotifications = false;
-    }, 5000);
+    // setTimeout(() => {
+    //   this.showNotifications = false;
+    // }, 5000);
   },
   methods: {
     closeNotifications() {
