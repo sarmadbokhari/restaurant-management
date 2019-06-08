@@ -59,13 +59,21 @@
     <!-- ORDERS -->
     <div v-if="filteredOrders.length" class="orders-container overflow-auto">
       <div class="flex">
-        <div class="flex-1 bg-gray-400 h-12">Order name</div>
-        <div class="flex-1 bg-gray-400 h-12">Order status</div>
-        <div class="flex-1 bg-gray-400 h-12">Destination</div>
-        <div class="flex-1 bg-gray-400 h-12">Order created at</div>
+        <div class="flex-1 text-center bg-gray-400 h-12 font-bold">
+          Order name
+        </div>
+        <div class="flex-1 text-center bg-gray-400 h-12 font-bold">
+          Order status
+        </div>
+        <div class="flex-1 text-center bg-gray-400 h-12 font-bold">
+          Destination
+        </div>
+        <div class="flex-1 text-center bg-gray-400 h-12 font-bold">
+          Order created at
+        </div>
       </div>
       <div
-        class="flex cursor-pointer md:hover:text-blue-600"
+        class="flex cursor-pointer md:hover:text-blue-700"
         v-for="(order, index) in filteredOrders"
         :key="index"
         @click="
@@ -73,10 +81,14 @@
           selectedOrder = order;
         "
       >
-        <div class="flex-1 bg-gray-400 h-12">{{ order.name }}</div>
-        <div class="flex-1 bg-gray-400 h-12">{{ order.currentStatus }}</div>
-        <div class="flex-1 bg-gray-400 h-12">{{ order.destination }}</div>
-        <div class="flex-1 bg-gray-400 h-12">
+        <div class="flex-1 text-center bg-gray-400 h-12">{{ order.name }}</div>
+        <div class="flex-1 text-center bg-gray-400 h-12">
+          {{ order.currentStatus }}
+        </div>
+        <div class="flex-1 text-center bg-gray-400 h-12">
+          {{ order.destination }}
+        </div>
+        <div class="flex-1 text-center bg-gray-400 h-12">
           {{ order.sent_at_second }} seconds
         </div>
       </div>
