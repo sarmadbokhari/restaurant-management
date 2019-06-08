@@ -9,7 +9,7 @@ In the .env file, replace `YOUR_ACCESS_TOKEN` with your mapbox access token, whi
 
 **Order Detail view will not show a map view if you don't have this setup.**
 ```
-VUE_APP_MAPBOX_ACCESS_TOKEN=MAPBOX_ACCESS_TOKEN
+VUE_APP_MAPBOX_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
 ```
 
 ## 2. Install Dependencies
@@ -21,25 +21,6 @@ npm install
 ```
 npm run simulation
 ```
-
-
-
-# Screenshots
-Notifications
-![Notifcations](/screenshots/Notifications.png?raw=true)
-
-Order Detail
-![Order Detail](/screenshots/OrderDetail.png?raw=true)
-
-Take manual action on an order
-![Order Detail](/screenshots/OrderDetail_DropDown.png?raw=true)
-
-Filtered order view
-![Filtered order view](/screenshots/FilteredOrders.png?raw=true)
-
-Restaurant Performance
-Take manual action on an order
-![Restaurant performance](/screenshots/Performance_Data.png?raw=true)
 
 
 
@@ -92,6 +73,7 @@ On the FE I store orders like so:
   - I started the entire project by building a dedicated `/orders/:id` page that can host information about any 1 order and can properly display all the relevant information. This page is routed to by clicking on a notification.
 
 
+
 # If I had more time!
 - Update BE to send minimal payloads when order status changes, all we need on FE is the `id` and `event_name` on a new status order, or if the order item itself is being changed we could simply send `{ id: ID, changes: { ... } }`. Right now we receive the entire `order` {}.
 - Add better animations when order statuses change
@@ -104,8 +86,26 @@ On the FE I store orders like so:
 
 
 
-# Tests
+# Screenshots
+Notifications
+![Notifcations](/screenshots/Notifications.png?raw=true)
 
+Order Detail
+![Order Detail](/screenshots/OrderDetail.png?raw=true)
+
+Take manual action on an order
+![Order Detail](/screenshots/OrderDetail_DropDown.png?raw=true)
+
+Filtered order view
+![Filtered order view](/screenshots/FilteredOrders.png?raw=true)
+
+Restaurant Performance
+Take manual action on an order
+![Restaurant performance](/screenshots/Performance_Data.png?raw=true)
+
+
+
+# Tests
 ### Run your tests
 ```
 npm run test
