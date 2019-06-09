@@ -85,7 +85,7 @@ On the FE I store orders like so:
 - Show full order history (see discussion above)
   - Right now I assume most orders will transition between these 5 statuses: CREATED -> COOKED -> DRIVER_RECEIVED -> DELIVERED (with the option of it becoming CANCELLED at any point)
 - Show in the dashboard at which point orders are being CANCELLED. If they've already been cooked or are en route, the restaurant is bleeding money, this is valuable information for restaurant owners to know.
-- Add more tests, specifically testing various order status changes.
+- Add more thorough unit and e2e tests, specifically testing each component and various order status changes.
 - Explore adding a FE state machine design pattern for each order.
 - Use a NLP library to categorize food items by type of cuisine.
 
