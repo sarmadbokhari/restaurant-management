@@ -20,7 +20,7 @@
           <p class="text-gray-600 text-sm mr-8">
             count: {{ filteredOrders.length }}
           </p>
-          <p>
+          <p id="current-status">
             {{ statusMap[currentFilter] }}
           </p>
           <i class="fas fa-angle-down text-sm pl-3 px-2"></i>
