@@ -222,7 +222,7 @@ export default {
   methods: {
     getBestSellers() {
       return Object.entries(this.$store.getters.topSellers)
-        .sort(([key1, value1], [key2, value2]) => {
+        .sort(([key1, value1], [key2, value2]) => { // eslint-disable-line
           return value2 - value1;
         })
         .slice(0, 5);

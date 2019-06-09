@@ -49,7 +49,7 @@ export default {
       mapboxgl.accessToken = this.accessToken;
 
       // get coordinates from address
-      var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+      var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken }); // eslint-disable-line
 
       const restaurant = await mapboxClient.geocoding
         .forwardGeocode({

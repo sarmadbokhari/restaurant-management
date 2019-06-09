@@ -123,7 +123,6 @@ import Dropdown from "./Dropdown.vue";
 import EmptyState from "../icons/EmptyState.vue";
 import Modal from "./Modal.vue";
 import OrderDetail from "./OrderDetail.vue";
-import _ from "lodash";
 
 export default {
   components: {

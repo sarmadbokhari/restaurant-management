@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     isConnected: false,
     orders: [],
-    showAllEvents: true,
+    showAllEvents: false,
     filters: [
       { text: "Cooking Now", value: "CREATED" },
       { text: "Cooked", value: "COOKED" },
