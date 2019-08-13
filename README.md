@@ -1,6 +1,24 @@
 # Restaurant Order Management Web App
 Built with VueJS, Vuex, socket-io, and tailwindcss
 
+# Screenshots
+Notifications
+![Notifcations](/screenshots/Notifications.png?raw=true)
+
+Order Detail
+![Order Detail](/screenshots/OrderDetail.png?raw=true)
+
+Take manual action on an order
+![Order Detail](/screenshots/OrderDetail_DropDown.png?raw=true)
+
+Filtered order view
+![Filtered order view](/screenshots/FilteredOrders.png?raw=true)
+
+Restaurant Performance
+Take manual action on an order
+![Restaurant performance](/screenshots/Performance_Data.png?raw=true)
+
+
 ## Technology reasoning
 - VueJS for reusable component design paradigm
 - Vuex for a global state container (following flux architecture)
@@ -88,26 +106,6 @@ On the FE I store orders like so:
 - Add more thorough unit and e2e tests, specifically testing each component and various order status changes.
 - Explore adding a FE state machine design pattern for each order.
 - Use a NLP library to categorize food items by type of cuisine.
-
-
-
-# Screenshots
-Notifications
-![Notifcations](/screenshots/Notifications.png?raw=true)
-
-Order Detail
-![Order Detail](/screenshots/OrderDetail.png?raw=true)
-
-Take manual action on an order
-![Order Detail](/screenshots/OrderDetail_DropDown.png?raw=true)
-
-Filtered order view
-![Filtered order view](/screenshots/FilteredOrders.png?raw=true)
-
-Restaurant Performance
-Take manual action on an order
-![Restaurant performance](/screenshots/Performance_Data.png?raw=true)
-
 
 
 # Tests
