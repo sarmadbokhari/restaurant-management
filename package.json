@@ -15,7 +15,7 @@
     "core-js": "^2.6.5",
     "express": "^4.15.2",
     "lodash": "^4.17.11",
-    "mapbox-gl": "^1.0.0",
+    "mapbox-gl": "^1.13.3",
     "portal-vue": "^2.1.5",
     "socket.io": "^2.2.0",
     "vue": "^2.6.10",
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
-    "@vue/cli-plugin-e2e-cypress": "^3.8.0",
+    "@vue/cli-plugin-e2e-cypress": "^5.0.8",
     "@vue/cli-plugin-eslint": "^3.8.0",
     "@vue/cli-plugin-unit-jest": "^3.8.0",
     "@vue/cli-service": "^3.8.0",
