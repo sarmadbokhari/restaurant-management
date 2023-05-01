@@ -17,7 +17,7 @@
     "lodash": "^4.17.11",
     "mapbox-gl": "^1.0.0",
     "portal-vue": "^2.1.5",
-    "socket.io": "^2.2.0",
+    "socket.io": "^2.5.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vue-socket.io": "^3.0.7",
